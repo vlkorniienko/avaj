@@ -3,16 +3,19 @@
  */
 public class Aircraft {
     protected long id;
+    private static long idCounter = 0;
     protected String name;
     protected Coordinates coordinates;
-    private long idCounter;
 
     protected Aircraft(String name, Coordinates coordinates) {
         this.name = name;
-        this.id = 1;
+        this.id = ++idCounter;
         this.coordinates = coordinates;
     }
     private long nextId() {
-        return (this.id + 1);
+        return ++idCounter;
+    }
+    public String getName() {
+        return this.name;
     }
 }
