@@ -1,21 +1,20 @@
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 import javax.imageio.IIOException;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Avaj {
 
+    public static PrintWriter pw;
     public static void main(String[] args) {
         String line;
         int simulationCounter;
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader("scenario.txt"));
+            FileWriter fileWriter = new FileWriter("simulation.txt");
+            pw = new PrintWriter(fileWriter);
             int counter = 1;
             while ((line = reader.readLine()) != null) {
                 if (counter == 1) {
@@ -40,6 +39,9 @@ public class Avaj {
             System.out.println("Error to read file");
         } catch (NumberFormatException greaterThanIntex) {
             System.out.println("Number is greater than integer");
+        }
+        finally {
+            pw.close();
         }
     }
 

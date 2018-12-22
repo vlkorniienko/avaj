@@ -3,6 +3,7 @@
  */
 public class Helicopter extends Aircraft implements Flyable {
     WeatherTower weathertower;
+    String currentWeather;
 
     protected Helicopter(String name, Coordinates coordinates) {
         super(name, coordinates);
@@ -15,6 +16,9 @@ public class Helicopter extends Aircraft implements Flyable {
 
     @Override
     public void updateConditions() {
-        
+        currentWeather = WeatherProvider.getProvider().getCurrentWeather(coordinates);
+        if (currentWeather == "RAIN") {
+            Avaj.pw.print("It's rain now! Call the police!");
+        }
     }
 }
