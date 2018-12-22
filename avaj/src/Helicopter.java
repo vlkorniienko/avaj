@@ -17,8 +17,12 @@ public class Helicopter extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         currentWeather = WeatherProvider.getProvider().getCurrentWeather(coordinates);
-        if (currentWeather == "RAIN") {
-            Avaj.pw.print("It's rain now! Call the police!");
+        if (currentWeather.equals("RAIN")) {
+            Avaj.pw.println("It's rain now! Call the police!");
+            this.coordinates.setLongitude(this.coordinates.getLongitude() + 5);
+        }
+        else if (currentWeather.equals("SNOW")) {
+            Avaj.pw.println("");
         }
     }
 }
