@@ -2,6 +2,7 @@ import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 import javax.imageio.IIOException;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,6 +11,7 @@ public class Avaj {
     public static PrintWriter pw;
     public static void main(String[] args) {
         String line;
+        ArrayList<Aircraft> array = new ArrayList<>();
         int simulationCounter;
         try {
             BufferedReader reader = new BufferedReader(new FileReader("scenario.txt"));
@@ -29,7 +31,8 @@ public class Avaj {
                 }
                 else {
                     if (testRestStrings(line)) {
-
+                        String[] initialAircraft = line.split(" ");
+                        array.add(AircraftFactory.newAircraft(initialAircraft[0], ));
                     }
                 }
             }
@@ -46,8 +49,10 @@ public class Avaj {
     }
 
     public static boolean testRestStrings(String aircraft) {
-        Pattern p = Pattern.compile("^(Helicopter|JetPlane|Baloon)\\s")
-        return true;
+        Pattern p = Pattern.compile("^(Helicopter|JetPlane|Baloon)\\s(H|J|B)[0-9223372036854775807]\\s[0-9223372036854775807]\\s[0-9223372036854775807]\\s[0-9223372036854775807]$");
+        Matcher m = p.matcher(aircraft);
+        System.out.println(m.matches());
+        return m.matches();
     }
 
     public static boolean testFirstString(String FirstLine) {
