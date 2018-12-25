@@ -20,7 +20,7 @@ public class JetPlane extends Aircraft implements Flyable {
             this.coordinates.setLatitude(this.coordinates.getLatitude() + 5);
         }
         else if (currentWeather.equals("SNOW")) {
-            Avaj.pw.println("It's snow now! Snow in Africa in July");
+            Avaj.pw.println("It's snow now! Snow in Africa in July!");
             this.coordinates.setHeight(this.coordinates.getHeight() - 7);
             if (this.coordinates.getHeight() < 1) {
                 Avaj.pw.println(this.getName() + "(" + this.id + ")" + "landing.");
@@ -29,14 +29,14 @@ public class JetPlane extends Aircraft implements Flyable {
             }
         }
         else if (currentWeather.equals("SUN")) {
-            Avaj.pw.println("It's sun now! Everybody hold on! We will land on the beach now");
+            Avaj.pw.println("It's sun now! Everybody hold on! We will land on the beach now and have a party");
             this.coordinates.setLatitude(this.coordinates.getLatitude() + 10);
             this.coordinates.setHeight(this.coordinates.getHeight() + 2);
             if (this.coordinates.getHeight() > 100)
                 this.coordinates.setHeight(100);
         }
         else if (currentWeather.equals("FOG")) {
-            Avaj.pw.println("It's foh now! Let's jump from the helicopter now");
+            Avaj.pw.println("It's fog now! Let's jump from the helicopter now");
             this.coordinates.setLongitude(this.coordinates.getLongitude() + 1);
         }
     }

@@ -28,9 +28,9 @@ public class Avaj {
                     }
                 }
                 else {
-//                    if (testRestStrings(line)) {
-//
-//                    }
+                    if (testRestStrings(line)) {
+
+                    }
                 }
             }
         } catch (FileNotFoundException openFileEx) {
@@ -43,6 +43,11 @@ public class Avaj {
         finally {
             pw.close();
         }
+    }
+
+    public static boolean testRestStrings(String aircraft) {
+        Pattern p = Pattern.compile("^(Helicopter|JetPlane|Baloon)\\s")
+        return true;
     }
 
     public static boolean testFirstString(String FirstLine) {
