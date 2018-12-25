@@ -18,4 +18,16 @@ public class Coordinates {
     public int getHeight() {
         return this.height;
     }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setLatitude(int latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(int longitude) {
+        this.longitude = longitude;
+    }
 }

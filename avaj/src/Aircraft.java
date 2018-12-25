@@ -9,11 +9,11 @@ public class Aircraft {
 
     protected Aircraft(String name, Coordinates coordinates) {
         this.name = name;
-        this.id = ++idCounter;
+        this.id = nextId() + 1;
         this.coordinates = coordinates;
     }
     private long nextId() {
-        return ++idCounter;
+        return idCounter;
     }
     public String getName() {
         return this.name;
