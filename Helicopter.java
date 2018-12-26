@@ -39,7 +39,7 @@ public class Helicopter extends Aircraft implements Flyable {
                 this.coordinates.setHeight(100);
         }
         else if (currentWeather.equals("FOG")) {
-            Avaj.pw.println("Helicopter#" + this.getName() + "(" + this.id + "):" + "It's fog now! Let's jump from the helicopter now");
+            Avaj.pw.println("Helicopter#" + this.getName() + "(" + this.id + "):" + " It's fog now! Let's jump from the helicopter now");
             this.coordinates.setLongitude(this.coordinates.getLongitude() + 1);
         }
     }
