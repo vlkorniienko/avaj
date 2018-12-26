@@ -20,4 +20,8 @@ public class WeatherTower extends Tower {
             obs.updateConditions();
         }
     }
+    void changeWeather()
+    {
+        this.conditionsChanged();
+    }
 }

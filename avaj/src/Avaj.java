@@ -1,8 +1,4 @@
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
-import javax.imageio.IIOException;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +7,9 @@ public class Avaj {
     public static PrintWriter pw;
     public static void main(String[] args) {
         String line;
-        ArrayList<Aircraft> array = new ArrayList<>();
-        int simulationCounter;
+        AircraftFactory aircraftFactory = new AircraftFactory();
+        WeatherTower weatherTower = new WeatherTower();
+        int simulationCounter = 0;
         try {
             BufferedReader reader = new BufferedReader(new FileReader("scenario.txt"));
             FileWriter fileWriter = new FileWriter("simulation.txt");
@@ -32,16 +29,34 @@ public class Avaj {
                 else {
                     if (testRestStrings(line)) {
                         String[] initialAircraft = line.split(" ");
-                        array.add(AircraftFactory.newAircraft(initialAircraft[0], ));
+                        int longitude = Integer.parseInt(initialAircraft[2]);
+                        int latitude = Integer.parseInt(initialAircraft[3]);
+                        int height = Integer.parseInt(initialAircraft[4]);
+                        aircraftFactory.newAircraft(
+                                initialAircraft[0],
+                                initialAircraft[1],
+                                longitude,
+                                latitude,
+                                height).registerTower(weatherTower);
                     }
                 }
             }
+            WeatherProvider weatherProvider = WeatherProvider.getProvider();
+            while (simulationCounter > 0) {
+                weatherTower.conditionsChanged();
+                simulationCounter--;
+            }
         } catch (FileNotFoundException openFileEx) {
             System.out.println("File not found");
+            return ;
         } catch (IOException IOexception) {
             System.out.println("Error to read file");
-        } catch (NumberFormatException greaterThanIntex) {
-            System.out.println("Number is greater than integer");
+            return ;
+        } catch (NumberFormatException gr) {
+            System.out.println(gr.getMessage());
+            return ;
+        } catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
         }
         finally {
             pw.close();
