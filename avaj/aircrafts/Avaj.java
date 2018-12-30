@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class Avaj {
 
     public static PrintWriter pw;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyOwnException{
         String line;
         AircraftFactory aircraftFactory = new AircraftFactory();
         WeatherTower weatherTower = new WeatherTower();
@@ -32,6 +32,15 @@ public class Avaj {
                 }
                 else {
                     if (testRestStrings(line)) {
+                        counter++;
+                        try {
+                            if (counter > 20) {
+                                throw new MyOwnException(counter);
+                            }
+                        } catch (MyOwnException ex) {
+                            System.out.println("Error: to much objects in the sky, computer in weather tower doesn't have so much memory");
+                            System.exit(0);
+                        }
                         String[] initialAircraft = line.split(" ");
                         int longitude = Integer.parseInt(initialAircraft[2]);
                         int latitude = Integer.parseInt(initialAircraft[3]);
